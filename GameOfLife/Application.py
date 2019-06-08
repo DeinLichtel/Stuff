@@ -1,41 +1,23 @@
+import time
+from GameOfLife import Visualization as v
+
+
 class Application:
 
-    gridSize = 0
+    window = None
 
     def __init__(self):
-        print("Hello World")
-
+        self.window = v.Visualization(app=self)
+        self.main()
 
     def main(self):
-        value = input("Enter grid size.\n")
-        try:
-            global gridSize
-            gridSize = int(value)
-            print("Your input was " + str(gridSize))
-        except ValueError:
-            print("Invalid input!")
-            return
-
-
-
-
+        while not self.window.window_state():
+            self.window.update_visualization()
+            time.sleep(0.5)
+            
     def createGrid(self, size):
         print("Dummy")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
-    x = Application()
-    x.main()
+    Application()
