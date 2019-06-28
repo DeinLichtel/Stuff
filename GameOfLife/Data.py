@@ -50,11 +50,13 @@ class Grid:
 
                 live_neighbours = self.count_live_neighbours(i, j)
 
-                if self.matrix[i][j].get_state() == State.DEAD & live_neighbours == 3:
+
+                if self.matrix[i][j].get_state() == State.DEAD and live_neighbours == 3:
                     temp_matrix[i][j] = State.ALIVE
 
-                if self.matrix[i][j].get_state() == State.ALIVE & (live_neighbours == 2 | live_neighbours == 3):
-                        temp_matrix[i][j] = State.ALIVE
+
+                if self.matrix[i][j].get_state() == State.ALIVE and live_neighbours >= 2 and live_neighbours <= 3:
+                    temp_matrix[i][j] = State.ALIVE
 
 
 
@@ -77,16 +79,20 @@ class Grid:
         tlx = (x - 1 + self.gridSize) % self.gridSize
         tly = (y - 1 + self.gridSize) % self.gridSize
 
+
+
         for i in range(3):
             for j in range(3):
-
                 if self.matrix[(tlx + i) % self.gridSize][(tly + j) % self.gridSize].get_state() == State.ALIVE:
                     count = count + 1
 
-        return count - 1
+        if self.matrix[x][y].get_state() == State.ALIVE:
+            return count - 1
+        else:
+            return count
 
     def random_preset(self, chance_for_live_cell):
-        if chance_for_live_cell < 0 | chance_for_live_cell > 100 | chance_for_live_cell % 1 != 0:
+        if chance_for_live_cell < 0 or chance_for_live_cell > 100 or chance_for_live_cell % 1 != 0:
             raise ValueError
 
         for i in range(self.gridSize):
