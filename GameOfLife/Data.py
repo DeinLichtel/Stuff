@@ -1,4 +1,3 @@
-
 from random import randint
 
 class State:
@@ -91,6 +90,8 @@ class Grid:
         else:
             return count
 
+
+    #moved to preset, still left here to retain functionality
     def random_preset(self, chance_for_live_cell):
         if chance_for_live_cell < 0 or chance_for_live_cell > 100 or chance_for_live_cell % 1 != 0:
             raise ValueError
@@ -102,6 +103,8 @@ class Grid:
 
                 if chance <= chance_for_live_cell:
                     self.matrix[i][j].set_state(State.ALIVE)
+
+
 
 
 

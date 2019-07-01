@@ -5,6 +5,7 @@ from GameOfLife import Data as Data
 
 class Application:
 
+
     window = None
     grid = None
 
@@ -17,6 +18,8 @@ class Application:
         self.main()
 
     def main(self):
+
+
 
         while not self.window.window_state():
             self.grid.generation()
